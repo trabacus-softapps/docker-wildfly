@@ -1,6 +1,6 @@
 #Inspiration 1: https://github.com/jboss-dockerfiles/wildfly
 
-FROM fedora:21
+FROM fedora:23
 MAINTAINER Arun T K <arun.kalikeri@xxxxxxxx.com>
 
 # Execute system update
@@ -38,7 +38,7 @@ USER jboss
 ENV JAVA_HOME /usr/lib/jvm/java
 
 # Set the WILDFLY_VERSION env variable
-ENV WILDFLY_VERSION 8.2.0.Final
+ENV WILDFLY_VERSION 9.0.2.Final
 
 # Add the WildFly distribution to /opt, and make wildfly the owner of the extracted tar content
 # Make sure the distribution is available from a well-known place
@@ -57,12 +57,12 @@ RUN sed -i -- 's/JAVA_OPTS="-Xms64m -Xmx512m -XX:MaxPermSize=256m/JAVA_OPTS="-Xm
 RUN echo "JAVA_OPTS=\"\$JAVA_OPTS -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0\"" >> /opt/jboss/wildfly/bin/standalone.conf
 
 # Add Odoo Pentaho module
-ADD https://googledrive.com/host/0Bz-lYS0FYZbIfklDSm90US16S0VjWmpDQUhVOW1GZlVOMUdXb1hENFFBc01BTGpNVE1vZGM/pentaho-fedora21.war /opt/jboss/wildfly/standalone/deployments/
+ADD https://googledrive.com/host/0Bz-lYS0FYZbIfklDSm90US16S0VjWmpDQUhVOW1GZlVOMUdXb1hENFFBc01BTGpNVE1vZGM/pentaho-fedora23.war /opt/jboss/wildfly/standalone/deployments/
 
 # User root user to cahnge permission
 USER root
-RUN chown jboss:jboss /opt/jboss/wildfly/standalone/deployments/pentaho-fedora21.war
-RUN chmod 644 /opt/jboss/wildfly/standalone/deployments/pentaho-fedora21.war
+RUN chown jboss:jboss /opt/jboss/wildfly/standalone/deployments/pentaho-fedora23.war
+RUN chmod 644 /opt/jboss/wildfly/standalone/deployments/pentaho-fedora23.war
 
 # Switch back to jboss user
 USER jboss
