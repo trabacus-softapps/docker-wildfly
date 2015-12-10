@@ -6,7 +6,7 @@ This image weighs just over 1Gb. Keep in mind that WildFly is a flexible, lightw
 Pentaho & Wildfly version
 =========================
 
-This docker builds with a tested version of Wildfly 9.0 & pentaho-reporting.version=5.4-SNAPSHOT AND related dependencies. The packed versions of wildfly & pentaho have always been tested against our CI chain and are considered as production grade. We update the revision pretty often, though :)
+This docker builds with a tested version of Wildfly 9.0 & pentaho-reporting.version=6.0-SNAPSHOT AND related dependencies. The packed versions of wildfly & pentaho have always been tested against our CI chain and are considered as production grade. We update the revision pretty often, though :)
 
 Examples:
 ----------
