@@ -57,12 +57,14 @@ RUN sed -i -- 's/JAVA_OPTS="-Xms64m -Xmx512m -XX:MaxPermSize=256m/JAVA_OPTS="-Xm
 RUN echo "JAVA_OPTS=\"\$JAVA_OPTS -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0\"" >> /opt/jboss/wildfly/bin/standalone.conf
 
 # Add Odoo Pentaho module
-ADD https://googledrive.com/host/0Bz-lYS0FYZbIfklDSm90US16S0VjWmpDQUhVOW1GZlVOMUdXb1hENFFBc01BTGpNVE1vZGM/pentaho-fedora23.war /opt/jboss/wildfly/standalone/deployments/
+ADD https://googledrive.com/host/0Bz-lYS0FYZbIfklDSm90US16S0VjWmpDQUhVOW1GZlVOMUdXb1hENFFBc01BTGpNVE1vZGM/dist.tar.gz /opt/jboss/wildfly/standalone/deployments/ 
+tar zx /opt/jboss/wildfly/standalone/deployments/dist.tar.gz
+rm /opt/jboss/wildfly/standalone/deployments/dist.tar.gz
 
 # User root user to cahnge permission
 USER root
-RUN chown jboss:jboss /opt/jboss/wildfly/standalone/deployments/pentaho-fedora23.war
-RUN chmod 644 /opt/jboss/wildfly/standalone/deployments/pentaho-fedora23.war
+RUN chown -R jboss:jboss /opt/jboss/wildfly/standalone/deployments/dist
+RUN chmod -R 644 /opt/jboss/wildfly/standalone/deployments/dist
 
 # Switch back to jboss user
 USER jboss
