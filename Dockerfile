@@ -62,8 +62,8 @@ ADD https://googledrive.com/host/0Bz-lYS0FYZbIfklDSm90US16S0VjWmpDQUhVOW1GZlVOMU
 
 # User root user to cahnge permission
 USER root
-RUN chown -R jboss:jboss /opt/jboss/wildfly/standalone/deployments/dist
-RUN chmod -R 644 /opt/jboss/wildfly/standalone/deployments/dist
+RUN chown jboss:jboss /opt/jboss/wildfly/standalone/deployments/pentaho-fedora23.war
+RUN chmod 644 /opt/jboss/wildfly/standalone/deployments/pentaho-fedora23.war
 
 # Switch back to jboss user
 USER jboss
