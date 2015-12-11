@@ -58,9 +58,7 @@ RUN echo  "JAVA_OPTS=\"\$JAVA_OPTS -Xss2m -XX:+UseConcMarkSweepGC -XX:+CMSClassU
 RUN echo "JAVA_OPTS=\"\$JAVA_OPTS -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0\"" >> /opt/jboss/wildfly/bin/standalone.conf
 
 # Add Odoo Pentaho module
-ADD https://googledrive.com/host/0Bz-lYS0FYZbIfklDSm90US16S0VjWmpDQUhVOW1GZlVOMUdXb1hENFFBc01BTGpNVE1vZGM/dist.tar.gz /opt/jboss/wildfly/standalone/deployments/ 
-tar zx /opt/jboss/wildfly/standalone/deployments/dist.tar.gz
-rm /opt/jboss/wildfly/standalone/deployments/dist.tar.gz
+ADD https://googledrive.com/host/0Bz-lYS0FYZbIfklDSm90US16S0VjWmpDQUhVOW1GZlVOMUdXb1hENFFBc01BTGpNVE1vZGM/pentaho-fedora23.war /opt/jboss/wildfly/standalone/deployments/
 
 # User root user to cahnge permission
 USER root

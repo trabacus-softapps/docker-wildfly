@@ -1,4 +1,4 @@
-A *production-ready* image of Wildfly 9.0.2 with Pentaho Reports for Odoo 
+A *production-ready* image of Wildfly 8.2.1 with Pentaho Reports for Odoo 
 =========================================================================
 
 This image weighs just over 1Gb. Keep in mind that WildFly is a flexible, lightweight, managed application runtime that helps you build amazing applications written in JAVA. We designed this image with built-in external dependencies and almost nothing useless. It is used from development to production on version 8.0 with various community addons as pentaho reporting runtime.
@@ -6,7 +6,7 @@ This image weighs just over 1Gb. Keep in mind that WildFly is a flexible, lightw
 Pentaho & Wildfly version
 =========================
 
-This docker builds with a tested version of Wildfly 9.0 & pentaho-reporting.version=6.0-SNAPSHOT AND related dependencies. The packed versions of wildfly & pentaho have always been tested against our CI chain and are considered as production grade. We update the revision pretty often, though :)
+This docker builds with a tested version of Wildfly 8.2 & pentaho-reporting.version=6.0-SNAPSHOT AND related dependencies. The packed versions of wildfly & pentaho have always been tested against our CI chain and are considered as production grade. We update the revision pretty often, though :)
 
 Examples:
 ----------
