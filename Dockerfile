@@ -4,17 +4,17 @@ FROM fedora:23
 MAINTAINER Arun T K <arun.kalikeri@xxxxxxxx.com>
 
 # Execute system update
-RUN yum -y update && yum clean all
+RUN dnf -y update && dnf clean all
 
 # Set the Language
-RUN yum -y reinstall glibc-common 
+RUN dnf -y reinstall glibc-common 
 RUN sed -i -- 's/en_US.UTF-8/en_IN.utf8/g' /etc/locale.conf
 RUN source /etc/locale.conf # apply new setting
 ENV LANG en_IN.utf8
 
 # Install Microsoft fonts & necessary packages in Fedora 21
 Add https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm /tmp/
-RUN yum install -y /tmp/msttcore-fonts-installer-2.6-1.noarch.rpm xmlstarlet saxon augeas bsdtar unzip tar
+RUN dnf install -y /tmp/msttcore-fonts-installer-2.6-1.noarch.rpm xmlstarlet saxon augeas bsdtar unzip tar
 RUN rm /tmp/msttcore-fonts-installer-2.6-1.noarch.rpm
 
 # Create a user and group used to launch processes
@@ -30,7 +30,7 @@ USER jboss
 # User root user to install software
 USER root
 # Install necessary packages
-RUN yum -y install java-1.8.0-openjdk-devel && yum clean all
+RUN dnf -y install java-1.8.0-openjdk-devel && dnf clean all
 
 # Switch back to jboss user
 USER jboss
