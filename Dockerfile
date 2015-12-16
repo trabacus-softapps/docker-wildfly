@@ -51,8 +51,8 @@ ENV JBOSS_HOME /opt/jboss/wildfly
 #RUN /opt/jboss/wildfly/bin/add-user.sh admin Pass#3556 --silent
 
 # Increasing Initial heap size & Maximum heap size
-RUN sed -i -- 's/JAVA_OPTS="-Xms64m -Xmx512m -XX:MaxPermSize=256m/JAVA_OPTS="-Xms2048m -Xmx4096m -XX:PermSize=32m -XX:MaxPermSize=512m/g' /opt/jboss/wildfly/bin/standalone.conf
-RUN echo  "JAVA_OPTS=\"\$JAVA_OPTS -Xss2m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled\"" >> /opt/jboss/wildfly/bin/standalone.conf
+RUN sed -i -- 's/JAVA_OPTS="-Xms64m -Xmx512m -XX:MaxPermSize=256m/JAVA_OPTS="-Xms2048m -Xmx2048m -XX:MaxMetaspaceSize=256m/g -XX:+UseParallelGC' /opt/jboss/wildfly/bin/standalone.conf
+#RUN echo  "JAVA_OPTS=\"\$JAVA_OPTS -Xss2m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled\"" >> /opt/jboss/wildfly/bin/standalone.conf
 
 # Enable binding to all network interfaces and debugging inside the EAP
 RUN echo "JAVA_OPTS=\"\$JAVA_OPTS -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0\"" >> /opt/jboss/wildfly/bin/standalone.conf
