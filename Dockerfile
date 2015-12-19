@@ -30,12 +30,17 @@ USER jboss
 # User root user to install software
 USER root
 # Install necessary packages
-RUN dnf -y install java-1.8.0-openjdk-devel && dnf clean all
+#RUN dnf -y install java-1.8.0-openjdk-devel && dnf clean all
+ENV JAVA_VERSION 7u80
+ENV BUILD_VERSION b15
+curl -L -k  -H "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jdk-$JAVA_VERSION-linux-x64.rpm" > /tmp/jdk-7-linux-x64.rpm && \
+    dnf -y install /tmp/jdk-7-linux-x64.rpm && \
+    dnf clean all && rm -rf /tmp/jdk-7-linux-x64.rpm
 
 # Switch back to jboss user
 USER jboss
 # Set the JAVA_HOME variable to make it clear where Java is located
-ENV JAVA_HOME /usr/lib/jvm/java
+ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
 
 # Set the WILDFLY_VERSION env variable
 ENV WILDFLY_VERSION 8.2.1.Final
@@ -51,7 +56,7 @@ ENV JBOSS_HOME /opt/jboss/wildfly
 #RUN /opt/jboss/wildfly/bin/add-user.sh admin Pass#3556 --silent
 
 # Increasing Initial heap size & Maximum heap size
-RUN sed -i -- 's/JAVA_OPTS="-Xms64m -Xmx512m -XX:MaxPermSize=256m/JAVA_OPTS="-Xms2048m -Xmx2048m -XX:MaxMetaspaceSize=256m/g' /opt/jboss/wildfly/bin/standalone.conf
+RUN sed -i -- 's/JAVA_OPTS="-Xms64m -Xmx512m -XX:MaxPermSize=256m/JAVA_OPTS="-Xms2048m -Xmx2048m -XX:MaxPermSize=1024m/g' /opt/jboss/wildfly/bin/standalone.conf
 RUN echo "JAVA_OPTS=\"\${JAVA_OPTS} -Dfile.encoding=UTF8 -Djavax.servlet.request.encoding=UTF-8 -Djavax.servlet.response.encoding=UTF-8 \"" >> /opt/jboss/wildfly/bin/standalone.conf
 RUN echo "JAVA_OPTS=\"\${JAVA_OPTS} -server -Djava.awt.headless=true -XX:+UseParNewGC -XX:ParallelGCThreads=2 -XX:SoftRefLRUPolicyMSPerMB=36000 -XX:NewRatio=2 -XX:+AggressiveOpts \"" >> /opt/jboss/wildfly/bin/standalone.conf
 #RUN echo  "JAVA_OPTS=\"\$JAVA_OPTS -Xss2m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled\"" >> /opt/jboss/wildfly/bin/standalone.conf
@@ -60,7 +65,8 @@ RUN echo "JAVA_OPTS=\"\${JAVA_OPTS} -server -Djava.awt.headless=true -XX:+UsePar
 RUN echo "JAVA_OPTS=\"\$JAVA_OPTS -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0\"" >> /opt/jboss/wildfly/bin/standalone.conf
 
 # Add Odoo Pentaho module
-ADD https://googledrive.com/host/0Bz-lYS0FYZbIfklDSm90US16S0VjWmpDQUhVOW1GZlVOMUdXb1hENFFBc01BTGpNVE1vZGM/pentaho-fedora23.war /opt/jboss/wildfly/standalone/deployments/
+#ADD https://googledrive.com/host/0Bz-lYS0FYZbIfklDSm90US16S0VjWmpDQUhVOW1GZlVOMUdXb1hENFFBc01BTGpNVE1vZGM/pentaho-fedora23.war /opt/jboss/wildfly/standalone/deployments/
+ADD http://cloud1.willowit.com.au/dist/pentaho-reports-for-openerp.war /opt/jboss/wildfly/standalone/deployments/pentaho-fedora23.war
 
 # User root user to cahnge permission
 USER root
