@@ -14,7 +14,7 @@ ENV LANG en_IN.utf8
 
 # Install Microsoft fonts & necessary packages in Fedora 21
 Add https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm /tmp/
-RUN dnf install -y /tmp/msttcore-fonts-installer-2.6-1.noarch.rpm xmlstarlet saxon augeas bsdtar unzip tar
+RUN dnf install -y /tmp/msttcore-fonts-installer-2.6-1.noarch.rpm xmlstarlet saxon augeas bsdtar unzip tar 
 RUN rm /tmp/msttcore-fonts-installer-2.6-1.noarch.rpm
 
 # Create a user and group used to launch processes
@@ -33,7 +33,7 @@ USER root
 #RUN dnf -y install java-1.8.0-openjdk-devel && dnf clean all
 ENV JAVA_VERSION 7u80
 ENV BUILD_VERSION b15
-curl -L -k  -H "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jdk-$JAVA_VERSION-linux-x64.rpm" > /tmp/jdk-7-linux-x64.rpm && \
+RUN curl -L -k  -H "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jdk-$JAVA_VERSION-linux-x64.rpm" > /tmp/jdk-7-linux-x64.rpm && \
     dnf -y install /tmp/jdk-7-linux-x64.rpm && \
     dnf clean all && rm -rf /tmp/jdk-7-linux-x64.rpm
 
