@@ -40,7 +40,7 @@ RUN curl -L -k  -H "Cookie: oraclelicense=accept-securebackup-cookie" "http://do
 # Switch back to jboss user
 USER jboss
 # Set the JAVA_HOME variable to make it clear where Java is located
-ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
+ENV JAVA_HOME /usr/java/latest
 
 # Set the WILDFLY_VERSION env variable
 ENV WILDFLY_VERSION 8.2.1.Final
