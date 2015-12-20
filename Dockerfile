@@ -56,9 +56,11 @@ ENV JBOSS_HOME /opt/jboss/wildfly
 #RUN /opt/jboss/wildfly/bin/add-user.sh admin Pass#3556 --silent
 
 # Increasing Initial heap size & Maximum heap size
-RUN sed -i -- 's/JAVA_OPTS="-Xms64m -Xmx512m -XX:MaxPermSize=256m/JAVA_OPTS="-Xms2048m -Xmx2048m -XX:MaxPermSize=1024m/g' /opt/jboss/wildfly/bin/standalone.conf
-RUN echo "JAVA_OPTS=\"\${JAVA_OPTS} -Dfile.encoding=UTF8 -Djavax.servlet.request.encoding=UTF-8 -Djavax.servlet.response.encoding=UTF-8 \"" >> /opt/jboss/wildfly/bin/standalone.conf
-RUN echo "JAVA_OPTS=\"\${JAVA_OPTS} -server -Djava.awt.headless=true -XX:+UseParNewGC -XX:ParallelGCThreads=2 -XX:SoftRefLRUPolicyMSPerMB=36000 -XX:NewRatio=2 -XX:+AggressiveOpts \"" >> /opt/jboss/wildfly/bin/standalone.conf
+RUN sed -i -- 's/JAVA_OPTS="-Xms64m -Xmx512m -XX:MaxPermSize=256m/JAVA_OPTS="-Xms2048m -Xmx6144m -XX:MaxPermSize=256m/g' /opt/jboss/wildfly/bin/standalone.conf
+RUN echo "JAVA_OPTS=\"\${JAVA_OPTS} -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 \"" >> /opt/jboss/wildfly/bin/standalone.conf
+
+#RUN echo "JAVA_OPTS=\"\${JAVA_OPTS} -Dfile.encoding=UTF8 -Djavax.servlet.request.encoding=UTF-8 -Djavax.servlet.response.encoding=UTF-8 \"" >> /opt/jboss/wildfly/bin/standalone.conf
+#RUN echo "JAVA_OPTS=\"\${JAVA_OPTS} -server -Djava.awt.headless=true -XX:+UseParNewGC -XX:ParallelGCThreads=2 -XX:SoftRefLRUPolicyMSPerMB=36000 -XX:NewRatio=2 -XX:+AggressiveOpts \"" >> /opt/jboss/wildfly/bin/standalone.conf
 #RUN echo  "JAVA_OPTS=\"\$JAVA_OPTS -Xss2m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled\"" >> /opt/jboss/wildfly/bin/standalone.conf
 
 # Enable binding to all network interfaces and debugging inside the EAP
