@@ -67,8 +67,8 @@ RUN echo "JAVA_OPTS=\"\${JAVA_OPTS} -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsu
 RUN echo "JAVA_OPTS=\"\$JAVA_OPTS -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0\"" >> /opt/jboss/wildfly/bin/standalone.conf
 
 # Add Odoo Pentaho module
-#ADD https://googledrive.com/host/0Bz-lYS0FYZbIfklDSm90US16S0VjWmpDQUhVOW1GZlVOMUdXb1hENFFBc01BTGpNVE1vZGM/pentaho-fedora23.war /opt/jboss/wildfly/standalone/deployments/
-ADD http://cloud1.willowit.com.au/dist/pentaho-reports-for-openerp.war /opt/jboss/wildfly/standalone/deployments/pentaho-fedora23.war
+ADD https://googledrive.com/host/0Bz-lYS0FYZbIfklDSm90US16S0VjWmpDQUhVOW1GZlVOMUdXb1hENFFBc01BTGpNVE1vZGM/pentaho-fedora23.war /opt/jboss/wildfly/standalone/deployments/
+#ADD http://cloud1.willowit.com.au/dist/pentaho-reports-for-openerp.war /opt/jboss/wildfly/standalone/deployments/pentaho-fedora23.war
 
 # User root user to cahnge permission
 USER root
