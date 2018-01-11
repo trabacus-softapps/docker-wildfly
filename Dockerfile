@@ -31,9 +31,7 @@ USER jboss
 USER root
 # Install necessary packages
 #RUN dnf -y install java-1.8.0-openjdk-devel && dnf clean all
-ENV JAVA_VERSION 7u80
-ENV BUILD_VERSION b15
-RUN curl -L -k  -H "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jdk-$JAVA_VERSION-linux-x64.rpm" > /tmp/jdk-7-linux-x64.rpm && \
+RUN curl -L -k "https://mirror.its.sfu.ca/mirror/CentOS-Third-Party/NSG/common/x86_64/jdk-7u80-linux-x64.rpm" > /tmp/jdk-7-linux-x64.rpm && \
     dnf -y install /tmp/jdk-7-linux-x64.rpm && \
     dnf clean all && rm -rf /tmp/jdk-7-linux-x64.rpm
 
