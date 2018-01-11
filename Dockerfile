@@ -55,6 +55,7 @@ ENV JBOSS_HOME /opt/jboss/wildfly
 
 # Increasing Initial heap size & Maximum heap size
 RUN sed -i -- 's/JAVA_OPTS="-Xms64m -Xmx512m -XX:MaxPermSize=256m/JAVA_OPTS="-Xms2048m -Xmx6144m -XX:MaxPermSize=256m/g' /opt/jboss/wildfly/bin/standalone.conf
+RUN sed -i -- 's/{jboss.socket.binding.port-offset:0}/{jboss.socket.binding.port-offset:1}/g' /opt/jboss/wildfly/standalone/configuration/standalone.xml
 RUN echo "JAVA_OPTS=\"\${JAVA_OPTS} -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 \"" >> /opt/jboss/wildfly/bin/standalone.conf
 
 #RUN echo "JAVA_OPTS=\"\${JAVA_OPTS} -Dfile.encoding=UTF8 -Djavax.servlet.request.encoding=UTF-8 -Djavax.servlet.response.encoding=UTF-8 \"" >> /opt/jboss/wildfly/bin/standalone.conf
