@@ -82,7 +82,7 @@ RUN chmod 644 /opt/jboss/wildfly/standalone/deployments/pentaho-fedora21.war
 USER jboss
 
 # Expose the ports we're interested in
-EXPOSE 8080 9990
+EXPOSE 8081 9991
 
 # Set the default command to run on boot
 # This will boot WildFly in the standalone mode and bind to all interface
