@@ -31,7 +31,7 @@ USER jboss
 USER root
 # Install necessary packages
 #RUN dnf -y install java-1.8.0-openjdk-devel && dnf clean all
-RUN curl -L -k "https://mirror.its.sfu.ca/mirror/CentOS-Third-Party/NSG/common/x86_64/jdk-7u80-linux-x64.rpm" > /tmp/jdk-7-linux-x64.rpm && \
+RUN curl -L -k "http://softappsit.com/repo/jdk-7u80-linux-x64.rpm" > /tmp/jdk-7-linux-x64.rpm && \
     dnf -y install /tmp/jdk-7-linux-x64.rpm && \
     dnf clean all && rm -rf /tmp/jdk-7-linux-x64.rpm
 
@@ -68,14 +68,14 @@ RUN echo "JAVA_OPTS=\"\$JAVA_OPTS -Djboss.bind.address=0.0.0.0 -Djboss.bind.addr
 #ADD https://googledrive.com/host/0Bz-lYS0FYZbIfklDSm90US16S0VjWmpDQUhVOW1GZlVOMUdXb1hENFFBc01BTGpNVE1vZGM/pentaho-fedora23.war /opt/jboss/wildfly/standalone/deployments/
 #ADD http://cloud1.willowit.com.au/dist/pentaho-reports-for-openerp.war /opt/jboss/wildfly/standalone/deployments/pentaho-fedora23.war
 ADD https://github.com/softapps/pentaho-reports-war/raw/master/pentaho-fedora23.war /opt/jboss/wildfly/standalone/deployments/pentaho-fedora23.war
-#ADD https://github.com/softapps/pentaho-reports-war/raw/master/pentaho-fedora21.war /opt/jboss/wildfly/standalone/deployments/pentaho-fedora21.war
+ADD https://github.com/softapps/pentaho-reports-war/raw/master/pentaho-fedora21.war /opt/jboss/wildfly/standalone/deployments/pentaho-fedora21.war
 
 # User root user to cahnge permission
 USER root
 RUN chown jboss:jboss /opt/jboss/wildfly/standalone/deployments/pentaho-fedora23.war
 RUN chmod 644 /opt/jboss/wildfly/standalone/deployments/pentaho-fedora23.war
-#RUN chown jboss:jboss /opt/jboss/wildfly/standalone/deployments/pentaho-fedora21.war
-#RUN chmod 644 /opt/jboss/wildfly/standalone/deployments/pentaho-fedora21.war
+RUN chown jboss:jboss /opt/jboss/wildfly/standalone/deployments/pentaho-fedora21.war
+RUN chmod 644 /opt/jboss/wildfly/standalone/deployments/pentaho-fedora21.war
 
 # Switch back to jboss user
 USER jboss
