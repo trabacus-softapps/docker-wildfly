@@ -14,7 +14,7 @@ ENV LANG en_IN.utf8
 
 # Install Microsoft fonts & necessary packages in Fedora 21
 Add https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm /tmp/
-RUN dnf install -y /tmp/msttcore-fonts-installer-2.6-1.noarch.rpm xmlstarlet saxon augeas bsdtar unzip tar 
+RUN dnf install -y /tmp/msttcore-fonts-installer-2.6-1.noarch.rpm xmlstarlet saxon augeas bsdtar unzip tar lohit-devanagari-fonts 
 RUN rm /tmp/msttcore-fonts-installer-2.6-1.noarch.rpm
 
 # Create a user and group used to launch processes
